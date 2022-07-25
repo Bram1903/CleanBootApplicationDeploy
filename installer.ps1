@@ -87,7 +87,7 @@ choco feature enable -n allowGlobalConfirmation
 foreach ($package in $packages)
 {
     Write-Host "Installing $package..." -ForegroundColor Green
-    choco install $package -v
+    choco install $package -y
 }
 
 Write-Host "All the packages should have been successfully installed." -ForegroundColor Green
