@@ -13,6 +13,13 @@ $username = $env:UserName
 
 $host.UI.RawUI.WindowTitle = $title
 
+if (!([Security.Principal.WindowsPrincipal] `
+[Security.Principal.WindowsIdentity]::GetCurrent() `
+).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+    Write-Host "$username, unfortunately I need this session to be run as Administrator." -ForegroundColor Red
+    Exit
+}
+
 Write-Host "Hello, $username"
 Write-Host ""
 
