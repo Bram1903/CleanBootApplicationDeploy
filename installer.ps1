@@ -49,7 +49,7 @@ Write-Host "Starting the installation of the packages..."
 foreach ($package in $packages)
 {
     Write-Host "Installing $package..." -ForegroundColor Green
-    choco install $package
+    choco install $package -v
 }
 
 Write-Host "All the packages should have been successfully installed." -ForegroundColor Green
