@@ -22,7 +22,6 @@ Write-Host "Administrator privileges detected." -ForegroundColor Green
 
 Write-Host ""
 Write-Host "Hello, $username"
-Write-Host ""
 
 $yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes","Will install Chocolatey."
 $no = New-Object System.Management.Automation.Host.ChoiceDescription "&No","Will NOT install Chocolatey."
@@ -41,3 +40,5 @@ switch ($result) {
         Exit
     }
 }
+
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
