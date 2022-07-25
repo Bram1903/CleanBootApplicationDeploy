@@ -2,7 +2,6 @@ clear
 
 if ($IsWindows -or $ENV:OS) {
     Write-Host "Windows platform detected." -ForegroundColor Green
-    Write-Host ""
 } else {
     Write-Host "Unfortunately this script only works on a Windows based operating system." -ForegroundColor Red
     Exit
@@ -16,10 +15,12 @@ $host.UI.RawUI.WindowTitle = $title
 if (!([Security.Principal.WindowsPrincipal] `
 [Security.Principal.WindowsIdentity]::GetCurrent() `
 ).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
-    Write-Host "$username, unfortunately I need this session to be run as Administrator." -ForegroundColor Red
+    Write-Host "Shell is missing administrator privileges." -ForegroundColor Red
     Exit
 }
+Write-Host "Administrator privileges detected." -ForegroundColor Green
 
+Write-Host ""
 Write-Host "Hello, $username"
 Write-Host ""
 
