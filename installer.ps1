@@ -1,9 +1,10 @@
 clear
 
 if ($IsWindows -or $ENV:OS) {
-    Write-Host "Windows platform detected."
+    Write-Host "Windows platform detected." -ForegroundColor Green
+    Write-Host ""
 } else {
-    Write-Host "Unfornatly this script only works on a Windows based operating system."
+    Write-Host "Unfortunately this script only works on a Windows based operating system." -ForegroundColor Red
     Exit
 }
 
