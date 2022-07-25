@@ -26,33 +26,6 @@ Write-Host "Hello, $username"
 $yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes","Will install Chocolatey."
 $no = New-Object System.Management.Automation.Host.ChoiceDescription "&No","Will NOT install Chocolatey."
 $options = [System.Management.Automation.Host.ChoiceDescription[]]($yes, $no)
-$packagesLength = $packages.Length
-
-$title = "Installing chocolatey" 
-$message = "Would you like to install Chocolatey together with $packagesLength packages?"
-$result = $host.ui.PromptForChoice($title, $message, $options, 1)
-
-switch ($result) {
-    0{
-        Write-Host "Starting the installation of Chocolatey." -ForegroundColor Green
-    }1{
-        Write-Host "Installation aborted." -ForegroundColor Red
-        Exit
-    }
-}
-
-Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-
-Write-Host "Chocolatey should be succesfully installed." -ForegroundColor Green
-Write-Host "Starting the installation of the packages..."
-
-foreach ($package in $packages)
-{
-    Write-Host "Installing $package..." -ForegroundColor Green
-    choco install $package -v
-}
-
-Write-Host "All the packages should have been successfully installed." -ForegroundColor Green
 
 $packages = @(
     'googlechrome',
@@ -89,3 +62,31 @@ $packages = @(
     'maven',
     'nordvpn'
 )
+
+$packagesLength = $packages.Length
+
+$title = "Installing chocolatey" 
+$message = "Would you like to install Chocolatey together with $packagesLength packages?"
+$result = $host.ui.PromptForChoice($title, $message, $options, 1)
+
+switch ($result) {
+    0{
+        Write-Host "Starting the installation of Chocolatey." -ForegroundColor Green
+    }1{
+        Write-Host "Installation aborted." -ForegroundColor Red
+        Exit
+    }
+}
+
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+
+Write-Host "Chocolatey should be succesfully installed." -ForegroundColor Green
+Write-Host "Starting the installation of the packages..."
+
+foreach ($package in $packages)
+{
+    Write-Host "Installing $package..." -ForegroundColor Green
+    choco install $package -v
+}
+
+Write-Host "All the packages should have been successfully installed." -ForegroundColor Green
