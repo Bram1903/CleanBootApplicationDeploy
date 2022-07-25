@@ -83,6 +83,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 Write-Host "Chocolatey should be succesfully installed." -ForegroundColor Green
 Write-Host "Starting the installation of the packages..."
 
+choco feature enable -n allowGlobalConfirmation
 foreach ($package in $packages)
 {
     Write-Host "Installing $package..." -ForegroundColor Green
