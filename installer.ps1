@@ -27,7 +27,7 @@ $result = $host.ui.PromptForChoice($title, $message, $options, 1)
 
 switch ($result) {
     0{
-        Write-Host "Started the installation of Chocolatey." -ForegroundColor Green
+        Write-Host "Starting the installation of Chocolatey." -ForegroundColor Green
     }1{
         Write-Host "Installation aborted." -ForegroundColor Red
         Exit
