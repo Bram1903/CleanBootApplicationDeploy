@@ -1,7 +1,9 @@
 clear
 
-if (!$IsWindows) {
-    Write-Host "Unfornatly this script only works on Windows."
+if ($IsWindows -or $ENV:OS) {
+    Write-Host "Windows platform detected."
+} else {
+    Write-Host "Unfornatly this script only works on a Windows based operating system."
     Exit
 }
 
